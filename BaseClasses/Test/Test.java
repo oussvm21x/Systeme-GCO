@@ -2,9 +2,6 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
-import java.util.List;
-import java.util.Map;
-
 public class Test implements Q_E {
 
     private String testName ;
@@ -21,7 +18,7 @@ public class Test implements Q_E {
     }
 
     @Override
-    public String[] getAnswers() {
+    public String getAnswers() {
         return new String[0];
     }
 

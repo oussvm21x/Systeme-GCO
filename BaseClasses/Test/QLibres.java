@@ -9,7 +9,7 @@ public class QLibres extends Question implements Q_E {
     }
 
     @Override
-    public String[] getAnswers() {
+    public String getAnswers() {
         return new String[0];
     }
 

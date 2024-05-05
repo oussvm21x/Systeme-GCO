@@ -30,6 +30,8 @@ public class Ortophoniste {
 
     public void createAccount(){
         //Cette methode va juste prend les infos puis appeler le constructure
+        //Logic collection des donnes
+        //Appeler le constructeure
     }
     public void updateAccount(){
         //ca va permmetre de fair des modification sur les infos en utulisant les setters et les getters
