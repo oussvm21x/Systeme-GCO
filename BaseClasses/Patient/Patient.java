@@ -1,9 +1,11 @@
+package BaseClasses.Patient;
+
 import BaseClasses.src.Dossier;
 import Enums.EPatient;
 
 import java.time.LocalDate;
 
-abstract class Patient {
+public abstract class Patient {
     protected String firstName;
     protected String lastName;
     protected LocalDate birthDate;

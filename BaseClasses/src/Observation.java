@@ -1,6 +1,7 @@
 package BaseClasses.src;
-import BaseClasses.*;
 
+import BaseClasses.Appointments.Appointment;
+import BaseClasses.Patient.Adult;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 public class Observation {
     private String content;
     private Appointment appointment;
+    private Adult adult ;
     private LocalDate date;
     private LocalTime hour;
 

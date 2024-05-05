@@ -1,10 +1,12 @@
+package BaseClasses.Appointments;
+
 import BaseClasses.src.Observation;
 import Enums.EAppointment;
 
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-abstract class Appointment {
+public abstract class Appointment {
     protected LocalDate date;
     protected LocalTime hour;
     protected LocalTime duration;

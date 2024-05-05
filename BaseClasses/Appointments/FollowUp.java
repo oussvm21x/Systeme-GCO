@@ -1,3 +1,5 @@
+package BaseClasses.Appointments;
+
 import BaseClasses.src.Objectif;
 import Enums.EAppointment;
 import Enums.EMode;

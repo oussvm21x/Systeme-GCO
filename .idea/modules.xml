@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BaseClasses/src/Appointments/Appointments.iml" filepath="$PROJECT_DIR$/BaseClasses/src/Appointments/Appointments.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Interfaces/Interfaces.iml" filepath="$PROJECT_DIR$/Interfaces/Interfaces.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BaseClasses/src/Patient/Patient.iml" filepath="$PROJECT_DIR$/BaseClasses/src/Patient/Patient.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Systeme-GCO.iml" filepath="$PROJECT_DIR$/.idea/Systeme-GCO.iml" />
     </modules>
   </component>

@@ -1,3 +1,5 @@
+package BaseClasses.Appointments;
+
 import Enums.EAppointment;
 import Enums.EPatient;
 

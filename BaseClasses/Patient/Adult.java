@@ -1,10 +1,12 @@
+package BaseClasses.Patient;
+
 import BaseClasses.src.Dossier;
 import Enums.EPatient;
 
 import java.time.LocalDate;
 
 
-public class Adult extends Patient{
+public class Adult extends Patient {
     private String diplome ;
     private String profession ;
     private String phoneNum ;
