@@ -1,6 +1,6 @@
 package Enums;
 
-public enum EAdultQ {
+  public enum EAdultQ {
     HISTOIRE_MALADIE,
     SUIVI_MEDICAL
 }
