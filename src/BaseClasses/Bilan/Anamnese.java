@@ -17,9 +17,7 @@ public abstract class Anamnese extends Etape implements Q_E {
     public Question[] getQuestions(){
         return this.Questions;
     }
-    public String getAnswers(){
-        return this.Answers;
-    }
+  
     //setters
     public void setQuestions(Question[] questions){
         this.Questions = questions;

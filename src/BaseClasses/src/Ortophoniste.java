@@ -1,5 +1,8 @@
 package BaseClasses.src;
 
+import java.util.HashMap;
+
+import BaseClasses.Patient.Patient;
 
 public class Ortophoniste {
     private String firstName ;
@@ -8,8 +11,11 @@ public class Ortophoniste {
     private String phoneNumber ;
     private String emailAddress ;
     private String password ;
+    public static HashMap<Integer, Ortophoniste> PatientNAD = new HashMap<>();// 1 li 3ndhoum
+    public static HashMap<Integer, Ortophoniste> PatientNAND = new HashMap<>();// 0 li 3ndhoum
+    private Patient[] Archive ;
 
-    //Constructeure
+    
     public Ortophoniste(String firstName, String lastName, String address, String phoneNumber, String emailAddress, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

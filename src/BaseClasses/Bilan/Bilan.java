@@ -9,10 +9,10 @@ public class Bilan {
     private Queue<Etape> etapes;
     private Patient patient ;
     //constructeur
-    public Bilan(Queue<Etape> etapes, Patient patient) {
+  /*  public Bilan(Queue<Etape> etapes, Patient patient) {
         this.etapes = etapes;
         this.patient = patient;
-    }
+    }*/
     //getters et setters
     public Queue<Etape> getEtapes() {
         return etapes;
