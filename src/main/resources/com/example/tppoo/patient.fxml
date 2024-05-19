@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #EDF1FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.PatientController">
+	<children>
+		<Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0">
+			<children>
+				<Button fx:id="settings" layoutX="4.0" layoutY="314.0" mnemonicParsing="false" onAction="#settings" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: white;" text="     Paramètres" />
+				<Button fx:id="patients" layoutX="4.0" layoutY="214.0" mnemonicParsing="false" onAction="#Patients" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: #0066b2;" text="Patients" textFill="WHITE" />
+				<Button fx:id="rdv" layoutX="4.0" layoutY="164.0" mnemonicParsing="false" onAction="#appointements" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: white;" text="      Rendez-Vous" />
+				<Text layoutX="34.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+				<Text layoutX="34.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+				<Text layoutX="34.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+				<Text layoutX="34.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+				<Text layoutX="34.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+
+				<Button fx:id="compte" layoutX="4.0" layoutY="64.0" mnemonicParsing="false" onAction="#Compte" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: white;" text="Compte" />
+
+				<Button fx:id="dash" layoutX="4.0" layoutY="114.0" mnemonicParsing="false" onAction="#Dashboard" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: white;" text="     Dashboard" />
+				<Button fx:id="Archives" layoutX="4.0" layoutY="264.0" mnemonicParsing="false" onAction="#Archives" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: white;" text="Archives" />
+
+			</children>
+		</Pane>
+      <ScrollPane fx:id="scrollpane" layoutX="157.0" layoutY="55.0" prefHeight="291.0" prefWidth="417.0" style="-fx-background-color: white;" />
+      <Button fx:id="Ajouter" layoutX="472.0" layoutY="358.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter Patient" textFill="WHITE" />
+      <CheckBox fx:id="Adossier" layoutX="157.0" layoutY="18.0" mnemonicParsing="false" text="Avec Dossier" textFill="#0066b2" />
+      <TextField fx:id="searchBar" layoutX="373.0" layoutY="16.0" />
+      <Button fx:id="searchButton" layoutX="523.0" layoutY="14.0" minWidth="45.0" mnemonicParsing="false" onAction="#Searche" prefHeight="31.0" prefWidth="45.0" style="-fx-background-color: #0066b2;" text="O" />
+	</children>
+</AnchorPane>

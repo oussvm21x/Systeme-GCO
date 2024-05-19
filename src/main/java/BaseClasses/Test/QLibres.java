@@ -1,0 +1,22 @@
+package BaseClasses.Test;
+
+import Interfaces.Q_E;
+
+public class QLibres extends Question implements Q_E {
+	
+	private String Answer ;
+    @Override
+    public void setQuestions() {
+
+    }
+
+    @Override
+    public String getAnswers() {
+        return "";
+    }
+
+    @Override
+    public void calculateScore() {
+
+    }
+}
