@@ -1,8 +1,9 @@
 package BaseClasses.src;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class FicheSuivi {
+public class FicheSuivi implements Serializable {
     private List<Objectif> Objectifs ;
 
     public FicheSuivi(List<Objectif> objs) {

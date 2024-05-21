@@ -3,7 +3,9 @@ package BaseClasses.Bilan;
 import BaseClasses.Test.Question;
 import Interfaces.Q_E;
 
-public abstract class Anamnese extends Etape implements Q_E {
+import java.io.Serializable;
+
+public abstract class Anamnese extends Etape implements Q_E , Serializable {
     private Question[] Questions ;
     private String[] Answers ;
 

@@ -1,4 +1,6 @@
 package BaseClasses.Bilan;
 
-public abstract class Etape {
+import java.io.Serializable;
+
+public abstract class Etape implements Serializable {
 }

@@ -3,9 +3,10 @@ package BaseClasses.Bilan;
 
 import BaseClasses.Patient.Patient;
 
+import java.io.Serializable;
 import java.util.Queue;
 
-public class Bilan {
+public class Bilan implements Serializable {
     private Queue<Etape> etapes;
     private Patient patient ;
     //constructeur

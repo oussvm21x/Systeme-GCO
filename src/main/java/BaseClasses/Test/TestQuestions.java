@@ -2,10 +2,11 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Map;
 
-public class TestQuestions extends Test implements Q_E {
+public class TestQuestions extends Test implements Q_E, Serializable {
     HashSet<Question> questions ;
     Map<Question , Float> scores ;
 

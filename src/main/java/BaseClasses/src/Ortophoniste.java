@@ -29,9 +29,13 @@ public class Ortophoniste implements Serializable {
     public  HashMap<Integer, Patient> PatientNAD = new HashMap<>();
     private Patient[] Patients = new Patient[100] ;
     private Patient[] Archive = new Patient[100]  ;
-    private HashMap<LocalDate, Appointment[]> appointments ;
+    public HashMap<LocalDate, Appointment[]> appointments ;
 
-
+    public void deleteAppointment(LocalDate date) {
+        if (appointments.containsKey(date)) {
+            appointments.remove(date);
+        }
+    }
 
     public Ortophoniste(String firstName, String lastName, String address, String phoneNumber, String emailAddress, String password) {
         this.firstName = firstName;
@@ -183,19 +187,18 @@ public class Ortophoniste implements Serializable {
         if (appointments.containsKey(date)) {
             Appointment[] existingAppointments = appointments.get(date);
             for (Appointment appointment : existingAppointments) {
-                LocalTime appointmentEndTime = appointment.getHour().plusHours(appointment.getDuration().getHour())
-                        .plusMinutes(appointment.getDuration().getMinute());
-                if (appointment.getHour().isBefore(newAppointment.getHour()) && appointmentEndTime.isAfter(newAppointment.getHour())) {
+                if ( appointment.getHour()== newAppointment.getHour()){
                     return false;
                 }else {
-                 appointmentEndTime = newAppointment.getHour().plusHours(newAppointment.getDuration().getHour())
-                            .plusMinutes(newAppointment.getDuration().getMinute());
-                    if (appointment.getHour().isAfter(newAppointment.getHour()) && appointmentEndTime.isAfter(newAppointment.getHour())) {
-                        return false;
-                    }else {
-                        if (appointment.getHour().equals(newAppointment.getHour())) {
-                            return false;
-                        }
+                    Appointment min = newAppointment;
+                    Appointment max= appointment;
+                    if(appointment.getHour()<newAppointment.getHour()){
+                       min = appointment;
+                       max= newAppointment;
+                    }
+                    Integer time = min.getHour() + min.getDuration() ;
+                    if (time > max.getHour()){
+                        return false ;
                     }
                 }
             }
@@ -205,7 +208,11 @@ public class Ortophoniste implements Serializable {
         } else {
             appointments.put(date, new Appointment[]{ newAppointment });
         }
+        System.out.println("appointments:"+ appointments);
         return true;
+    }
+    public HashMap<LocalDate, Appointment[]> getAppointments() {
+        return appointments;
     }
 
 }

@@ -3,29 +3,36 @@ package BaseClasses.Appointments;
 import BaseClasses.Patient.Patient;
 import BaseClasses.src.Observation;
 import Enums.EAppointment;
+import Enums.EMode;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public abstract class Appointment {
+public abstract class Appointment implements Serializable {
+    private static final long serialVersionUID = 123456789L;
     protected LocalDate date;
-    protected LocalTime hour;
-    protected LocalTime duration;
+    protected Integer hour;
+    protected Integer duration = 90;;
     protected EAppointment appointmentType;
     protected Observation observation;
     protected List<Patient> Patients;
+    protected String title ;
+    private EMode mode;
 
     public Appointment() {
 
     }
 
+    public void setMode(EMode mode) {
+        this.mode = mode;
+    }
 
-
-    public Appointment(LocalDate date, LocalTime hour, LocalTime duration, EAppointment appointmentType) {
+    public Appointment(LocalDate date, Integer hour, Integer duration, EAppointment appointmentType) {
         this.date = date;
         this.hour = hour;
         this.duration = duration;
@@ -50,20 +57,20 @@ public abstract class Appointment {
     }
 
     // Getter and setter for hour
-    public LocalTime getHour() {
+    public Integer getHour() {
         return hour;
     }
 
-    public void setHour(LocalTime hour) {
+    public void setHour(Integer hour) {
         this.hour = hour;
     }
 
     // Getter and setter for duration
-    public LocalTime getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(LocalTime duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -82,6 +89,18 @@ public abstract class Appointment {
             this.Patients = new ArrayList<>();
         }
         Patients = patients;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Patient> getPatients() {
+        return Patients;
     }
 }
 

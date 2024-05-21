@@ -4,19 +4,19 @@ import BaseClasses.src.Objectif;
 import Enums.EAppointment;
 import Enums.EMode;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class FollowUp extends Appointment {
+public class FollowUp extends Appointment  implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int medFileNum;
-    private EMode mode;
-    private final LocalTime duration = LocalTime.of(1, 0);
-    private List<Objectif> objectifs;
 
-    public FollowUp(LocalDate date, LocalTime hour, LocalTime duration, EAppointment appointmentType, EMode mode) {
+    //private List<Objectif> objectifs;
+
+    public FollowUp(LocalDate date, Integer hour, Integer duration, EAppointment appointmentType, EMode mode) {
         super(date, hour, duration, appointmentType);
-        this.mode = mode;
     }
     public FollowUp() {
         super();
@@ -31,21 +31,15 @@ public class FollowUp extends Appointment {
         this.medFileNum = medFileNum;
     }
 
-    public EMode getMode() {
-        return mode;
-    }
 
-    public void setMode(EMode mode) {
-        this.mode = mode;
-    }
 
-    public List<Objectif> getObjectifs() {
+   /* public List<Objectif> getObjectifs() {
         return objectifs;
     }
 
     public void setObjectifs(List<Objectif> objectifs) {
         this.objectifs = objectifs;
-    }
+    }*/
 
     @Override
     public void cosnulterObservation() {

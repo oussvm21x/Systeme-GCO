@@ -42,8 +42,8 @@ public class ConnectionControllers {
 	        String passveref = motpasse.getText();
 
 	        if (!Clinique.ortophonistesMap.containsKey(mail)) {
-//	            adresseEmail.setStyle("-fx-border-color: red;");
-//	            adresseEmail.setText("Verifier votre Email");
+              adresseEmail.setStyle("-fx-border-color: red;");
+			  adresseEmail.setText("Verifier votre Email");
 	        } else {
 	            Ortophoniste retrievedOrtophoniste = Clinique.ortophonistesMap.get(mail);
 	            Clinique.ortophonisteCourrant = retrievedOrtophoniste;
@@ -54,7 +54,7 @@ public class ConnectionControllers {
 					controller.setValues();
 					AnchorPane anchorPane = (AnchorPane) root;
 					Stage stage = (Stage) (((Node) A.getSource()).getScene().getWindow());
-					Scene scene = new Scene(anchorPane); // Use the AnchorPane here
+					Scene scene = new Scene(anchorPane);
 					stage.setScene(scene);
 					stage.show();
 	            } else {

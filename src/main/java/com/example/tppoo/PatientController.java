@@ -2,6 +2,7 @@ package com.example.tppoo;
 
 import BaseClasses.Patient.Patient;
 import BaseClasses.src.Clinique;
+import Enums.EPatient;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -107,12 +108,32 @@ public class PatientController implements Initializable {
         });
 
         voirButton.setOnAction(event -> {
-            // Perform actions when the "Voir" button is clicked
-            // You can access the 'ortophoniste' object associated with this button
-            // For example, you can show more details about the patient
-            // You can use 'ortophoniste' as needed here
-            System.out.println("Viewing details of patient: " + ortophoniste.getLastName() + " " + ortophoniste.getFirstName());
+            try {
+                FXMLLoader loader;
+                Parent root;
+                if (ortophoniste.getType().equals(EPatient.ADULT)) {
+                    loader = new FXMLLoader(getClass().getResource("ProfilAdulte.fxml"));
+                    root = loader.load();
+                    ProfilAdulteController controller = loader.getController();
+                    controller.getInfo(ortophoniste.getId());
+                    controller.setValues();
+                } else {
+                    loader = new FXMLLoader(getClass().getResource("ProfilEnfant.fxml"));
+                    root = loader.load();
+                    ProfilEnfantController controller = loader.getController();
+                    controller.getInfo(ortophoniste.getId());
+                    controller.setValues();
+                }
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
+
+
 
         if (!entryPane.getChildren().contains(imageView)) {
             entryPane.getChildren().addAll(imageView, nameLabel, surnameLabel, archiveButton, voirButton);

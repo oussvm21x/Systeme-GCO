@@ -2,7 +2,9 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
-public class Question implements Q_E {
+import java.io.Serializable;
+
+public class Question implements Q_E, Serializable {
     private String enonce; 
 	private float score; 
 	

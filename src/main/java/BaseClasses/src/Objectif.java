@@ -2,7 +2,9 @@ package BaseClasses.src;
 
 import Enums.EObjectif;
 
-public class Objectif {
+import java.io.Serializable;
+
+public class Objectif implements Serializable {
     private EObjectif type;
     private int note;
     private String enonce;

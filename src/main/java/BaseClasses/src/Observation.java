@@ -3,10 +3,11 @@ package BaseClasses.src;
 import BaseClasses.Appointments.Appointment;
 import BaseClasses.Patient.Adult;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Observation {
+public class Observation  implements Serializable {
     private String content;
     private Appointment appointment;
     private Adult adult ;

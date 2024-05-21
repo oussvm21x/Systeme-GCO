@@ -2,10 +2,11 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class TestExercices extends Test implements Q_E {
+public class TestExercices extends Test implements Q_E , Serializable {
     private List<Exercice> exercices  ;
     private Map<Exercice , Float> scores ;
 

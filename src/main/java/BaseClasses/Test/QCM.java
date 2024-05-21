@@ -2,7 +2,9 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
-public class QCM extends Question implements Q_E {
+import java.io.Serializable;
+
+public class QCM extends Question implements Q_E, Serializable {
 	
 	private String[] possiblesAnswers;
 	private int[] correctAnswers;

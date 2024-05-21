@@ -23,6 +23,24 @@ public  class Patient implements Serializable {
     protected Integer id ;
     private HashMap<LocalDate, Appointment[]> appointments ;
 
+    public void deleteAppointment(LocalDate date) {
+        if (appointments.containsKey(date)) {
+            appointments.remove(date);
+        }
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public String getBirthPlace() {
+        return birthPlace;
+    }
+
     public Patient(String firstName, String lastName, LocalDate birthDate, String birthPlace, String address, EPatient type, Dossier dossier) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -94,7 +112,7 @@ public  class Patient implements Serializable {
     }
     public void addAppointment(LocalDate date, Appointment newAppointment) {
         if (appointments == null) {
-            appointments = new HashMap<>(); // Cette ligne est redondante mais peut être gardée par précaution
+            appointments = new HashMap<>();
         }
         if (appointments.containsKey(date)) {
             Appointment[] existingAppointments = appointments.get(date);

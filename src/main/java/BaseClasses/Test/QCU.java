@@ -2,7 +2,9 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
-public class QCU extends Question implements Q_E {
+import java.io.Serializable;
+
+public class QCU extends Question implements Q_E , Serializable {
 
     String[]possiblesAnswers ;
     int answer ;

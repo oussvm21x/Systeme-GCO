@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -31,21 +30,21 @@
 
             </children>
         </Pane>
-        <Button fx:id="Ajouter" layoutX="617.0" layoutY="358.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter " textFill="WHITE" />
+        <Button fx:id="Ajouter" layoutX="608.0" layoutY="358.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Continuer" textFill="WHITE" />
       <Button fx:id="retourner" layoutX="157.0" layoutY="358.0" mnemonicParsing="false" onAction="#Retourner" style="-fx-background-color: #0066b2;" text="Annuler" textFill="WHITE" />
       <Pane layoutX="157.0" layoutY="28.0" prefHeight="315.0" prefWidth="524.0" style="-fx-background-color: white;">
          <children>
-            <TextField fx:id="hour" layoutX="292.0" layoutY="113.0" prefHeight="27.0" prefWidth="183.0" />
-            <DatePicker fx:id="date" layoutX="293.0" layoutY="48.0" />
-            <TextField fx:id="titre" layoutX="57.0" layoutY="48.0" prefHeight="27.0" prefWidth="183.0" />
-            <Label layoutX="57.0" layoutY="21.0" text="Titre:" textFill="#0066b2" />
-            <Label layoutX="293.0" layoutY="21.0" text="Date:" textFill="#0066b2" />
-            <Label layoutX="293.0" layoutY="88.0" text="Heur:" textFill="#0066b2" />
-            <ComboBox fx:id="type" layoutX="57.0" layoutY="113.0" prefHeight="27.0" prefWidth="183.0" />
-            <Label layoutX="56.0" layoutY="88.0" text="Type:" textFill="#0066b2" />
-            <ScrollPane fx:id="scrollpane" layoutX="57.0" layoutY="167.0" prefHeight="92.0" prefWidth="422.0" />
-            <Label layoutX="56.0" layoutY="148.0" text="Patients:" textFill="#0066b2" />
+            <TextField fx:id="hour" layoutX="293.0" layoutY="196.0" prefHeight="27.0" prefWidth="77.0" />
+            <DatePicker fx:id="date" layoutX="292.0" layoutY="113.0" />
+            <TextField fx:id="titre" layoutX="57.0" layoutY="113.0" prefHeight="27.0" prefWidth="183.0" />
+            <Label layoutX="50.0" layoutY="78.0" text="Titre:" textFill="#0066b2" />
+            <Label layoutX="292.0" layoutY="78.0" text="Date:" textFill="#0066b2" />
+            <Label layoutX="292.0" layoutY="158.0" text="Heur:" textFill="#0066b2" />
+            <ComboBox fx:id="type" layoutX="57.0" layoutY="196.0" prefHeight="27.0" prefWidth="183.0" />
+            <Label layoutX="56.0" layoutY="158.0" text="Type:" textFill="#0066b2" />
             <CheckBox fx:id="presentiel" layoutX="64.0" layoutY="274.0" mnemonicParsing="false" text="Présentiel" textFill="#0066b2" />
+            <TextField fx:id="Minute" layoutX="403.0" layoutY="196.0" prefHeight="27.0" prefWidth="77.0" />
+            <Label layoutX="403.0" layoutY="158.0" text="Minute:" textFill="#0066b2" />
          </children>
       </Pane>
     </children>

@@ -1,9 +1,16 @@
 package com.example.tppoo;
 
+import BaseClasses.Appointments.Appointment;
 import BaseClasses.Patient.Patient;
 import BaseClasses.src.Clinique;
+import Enums.EAppointment;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
@@ -16,10 +23,12 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.time.LocalDate;
+import java.util.*;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Callback;
 
 public class rdvController implements Initializable {
 
@@ -30,97 +39,83 @@ public class rdvController implements Initializable {
     @FXML
     private ScrollPane scrollpane;
     @FXML
-    private TextField searchBar;
+    private DatePicker searchBar;
     @FXML
     private Button searchButtton ;
     @FXML
-    private CheckBox Adossier ;
-    @FXML
     private ComboBox type ;
+    @FXML
+    private TableView<Appointment> table;
+    @FXML
+    private TableColumn<Appointment, String> typeColumn;
+   @FXML
+    private TableColumn<Appointment, String> titleColumn;
+    @FXML
+    private TableColumn<Appointment, LocalDate> dateColumn;
+    @FXML
+    private TableColumn<Appointment, String> timeColumn;
+    @FXML
+    private TableColumn<Appointment, String> durationColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //populateScrollPane();
-           type.getItems().addAll(
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
+       titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        timeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment, String> param) {
+                Appointment appointment = param.getValue();
+                int minutes = appointment.getHour(); // Assuming getHour() returns minutes
+                int hours = minutes / 60;
+                int mins = minutes % 60;
+                String formattedTime = String.format("%02d h %02d min", hours, mins);
+                return new SimpleStringProperty(formattedTime);
+            }
+        });
+
+        durationColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Appointment, String> param) {
+                Appointment appointment = param.getValue();
+                int minutes = appointment.getDuration();
+                int hours = minutes / 60;
+                int mins = minutes % 60;
+                String formattedTime = String.format("%02d h %02d min", hours, mins);
+                return new SimpleStringProperty(formattedTime);
+            }
+        });
+        displayAppointments();
+
+        type.getItems().addAll(
                 "Consultation",
                 "Suivi",
                 "Atelier"
         );
     }
 
-    private void populateScrollPane() {
-        if ( Clinique.ortophonisteCourrant.getNbClients()>0) {
-           VBox container = new VBox();
-            container.setSpacing(10);
-
-            for (int i=0 ; i< Clinique.ortophonisteCourrant.getLenght(); i++) {
-                Patient ortophoniste = Clinique.ortophonisteCourrant.getPatientSansDossier(i);
-                Pane pane = createEntryPane(ortophoniste);
-                container.getChildren().add(pane);
+    public void displayAppointments() {
+        ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
+        if (Clinique.ortophonisteCourrant != null) {
+            Map<LocalDate, Appointment[]> appointmentsMap = Clinique.ortophonisteCourrant.getAppointments();
+            if (appointmentsMap != null) {
+                for (Map.Entry<LocalDate, Appointment[]> entry : appointmentsMap.entrySet()) {
+                    LocalDate date = entry.getKey();
+                    Appointment[] appointments = entry.getValue();
+                    if (appointments != null) {
+                        for (Appointment appointment : appointments) {
+                            appointmentsList.add(appointment);
+                        }
+                    }
+                }
+                table.setItems(appointmentsList);
+            } else {
+                System.out.println("getAppointments() returned null.");
             }
-            scrollpane.setContent(container);
+        } else {
+            System.out.println("Clinique.ortophonisteCourrant is null.");
         }
 
-    }
-
-    private Pane createEntryPane(Patient ortophoniste) {
-        Pane entryPane = new Pane();
-        entryPane.setPrefWidth(400);
-        entryPane.setPrefHeight(100);
-
-        ImageView imageView = new ImageView(new Image(getClass().getResourceAsStream("/com/example/tppoo/profil.png")));
-        imageView.setFitWidth(50);
-        imageView.setFitHeight(50);
-        imageView.setLayoutX(10);
-        imageView.setLayoutY(25);
-
-        BorderStroke borderStroke = new BorderStroke(
-                Color.BLACK,
-                BorderStrokeStyle.SOLID,
-                CornerRadii.EMPTY,
-                BorderWidths.DEFAULT
-        );
-        Border border = new Border(borderStroke);
-        entryPane.setBorder(border);
-
-        Label nameLabel = new Label("Name: " + ortophoniste.getLastName());
-        nameLabel.setLayoutX(70);
-        nameLabel.setLayoutY(25);
-
-        Label surnameLabel = new Label("Surname: " + ortophoniste.getFirstName());
-        surnameLabel.setLayoutX(70);
-        surnameLabel.setLayoutY(50);
-
-        Button archiveButton = new Button("Archiver");
-        archiveButton.setLayoutX(300);
-        archiveButton.setLayoutY(40);
-
-        Button voirButton = new Button("Voir");
-        voirButton.setLayoutX(250);
-        voirButton.setLayoutY(40);
-
-        archiveButton.setStyle("-fx-background-color: #0066b2; -fx-text-fill: white");
-        voirButton.setStyle("-fx-background-color: #0066b2; -fx-text-fill: white");
-        // Event handler for "Archiver" button
-        archiveButton.setOnAction(event -> {
-            Clinique.ortophonisteCourrant.Archiver(ortophoniste.getId());
-            Pane parentPane = (Pane) archiveButton.getParent();
-            VBox container = (VBox) parentPane.getParent();
-            container.getChildren().remove(parentPane);
-            Clinique.sauvegarderClinique("Clinique.txt");
-        });
-
-        voirButton.setOnAction(event -> {
-            System.out.println("Viewing details of patient: " + ortophoniste.getLastName() + " " + ortophoniste.getFirstName());
-        });
-
-        if (!entryPane.getChildren().contains(imageView)) {
-            entryPane.getChildren().addAll(imageView, nameLabel, surnameLabel, archiveButton, voirButton);
-        }
-
-
-
-        return entryPane;
     }
 
 
@@ -197,35 +192,81 @@ public class rdvController implements Initializable {
     }
 
     public void Searche(ActionEvent A) throws  IOException {
-        int numDossier ;
-        Patient patient ;
-        if(Adossier.isSelected()){
-            try {
-                numDossier = Integer.parseInt(searchBar.getText());
-            } catch (NumberFormatException e) {
-                searchBar.setStyle("-fx-border-color: red;");
-                searchBar.setText("Veuillez entrer un numéro de Dossier Valide");
+        HashMap<LocalDate, Appointment[]> appointments = Clinique.ortophonisteCourrant.getAppointments();
+        ArrayList<Appointment> filteredAppointments = new ArrayList<>();
+        String selectedType = (String) type.getSelectionModel().getSelectedItem();
 
-                return; }
-            patient = Clinique.ortophonisteCourrant.recherchePatient(numDossier);
-            if(patient != null) {
-                Pane entryPane = createEntryPane(patient);
-                VBox container = new VBox();
-                container.setSpacing(10);
-                container.getChildren().add(entryPane);
-                scrollpane.setContent(container);
+        if (searchBar.getValue() == null){
+                if (selectedType == null) {
+                    for (Appointment[] appointmentArray : appointments.values()) {
+                        for (Appointment appointment : appointmentArray) {
+                            filteredAppointments.add(appointment);
+                        }
+                    }
+                } else {
+                    EAppointment Type;
+                    if (selectedType.equals("Atelier")) {
+                        Type = EAppointment.ATELIER;
+                    } else if (selectedType.equals("Suivi")) {
+                        Type = EAppointment.FOLLOW_UP;
+                    } else {
+                        Type = EAppointment.CONSULTATION;
+                    }
+                    for (Appointment[] appointmentArray : appointments.values()) {
+                        for (Appointment appointment : appointmentArray) {
+                            if (appointment.getAppointmentType().equals(Type)) {
+                                filteredAppointments.add(appointment);
+                            }
+                        }
+                    }
+                }
+        }else {
+            LocalDate Date= searchBar.getValue();
+
+            if (selectedType == null) {
+                if (appointments.containsKey(Date)) {
+                    Appointment[] appointmentsArray = appointments.get(Date);
+                    for (Appointment appointment : appointmentsArray) {
+                        filteredAppointments.add(appointment);
+                    }
+                }
+            } else {
+                EAppointment Type;
+                if (selectedType == "Atelier"){
+                  Type = EAppointment.ATELIER;
+                }else {
+                    if(selectedType == "Suivi"){
+                   Type = EAppointment.FOLLOW_UP;
+                    }else
+                        Type = EAppointment.CONSULTATION;
+                }
+                if (appointments.containsKey(Date)) {
+                    Appointment[] appointmentsArray = appointments.get(Date);
+                    for (Appointment appointment : appointmentsArray) {
+                        if (appointment.getAppointmentType().equals(Type)) {
+                            filteredAppointments.add(appointment);
+                        }
+                    }
+                }
             }
-            else {
-                Label noPatientLabel = new Label("Aucun Patient n'a été trouvé");
-                VBox container = new VBox();
-                container.setSpacing(10);
-                container.getChildren().add(noPatientLabel);
-                scrollpane.setContent(container);
-            }
+
         }
-
-
+        table.getItems().clear();
+        ObservableList<Appointment> observableAppointments = FXCollections.observableArrayList(filteredAppointments);
+        table.setItems(observableAppointments);
     }
 
-
+    public void deleteSelectedRdv(ActionEvent event) {
+        Appointment selectedRdv = table.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            table.getItems().remove(selectedRdv);
+            List<Patient> patients= selectedRdv.getPatients();
+            LocalDate date = selectedRdv.getDate();
+            Clinique.ortophonisteCourrant.deleteAppointment(date);
+            for (Patient e : patients) {
+                e.deleteAppointment(date);
+            }
+            Clinique.sauvegarderClinique("Clinique.txt");
+        }
+    }
 }

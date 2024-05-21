@@ -1,5 +1,7 @@
 package BaseClasses.Bilan;
 
-public class Troubles {
+import java.io.Serializable;
+
+public class Troubles implements  Serializable {
 
 }

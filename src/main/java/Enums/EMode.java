@@ -1,6 +1,8 @@
 package Enums;
 
-public enum EMode {
+import java.io.Serializable;
+
+public enum EMode implements Serializable {
     ONLINE,
     PRESENTIEL
 }

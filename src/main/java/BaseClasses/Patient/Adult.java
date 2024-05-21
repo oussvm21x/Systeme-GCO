@@ -19,4 +19,28 @@ public class Adult extends Patient {
     public Adult() {
 
     }
+
+    public String getDiplome() {
+        return diplome;
+    }
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setDiplome(String diplome) {
+        this.diplome = diplome;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
 }

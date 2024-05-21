@@ -1,6 +1,8 @@
 package Enums;
 
-public enum EKidQ {
+import java.io.Serializable;
+
+public enum EKidQ implements Serializable {
     STRUCTURE_FAMILIALE,
     DYNAMIQUE_FAMILIALE,
     ANTECEDENTS_FAMILIAUX,

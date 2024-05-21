@@ -1,6 +1,8 @@
 package Enums;
 
-  public enum EAdultQ {
+import java.io.Serializable;
+
+public enum EAdultQ implements Serializable {
     HISTOIRE_MALADIE,
     SUIVI_MEDICAL
 }

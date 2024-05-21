@@ -2,7 +2,9 @@ package BaseClasses.Test;
 
 import Interfaces.Q_E;
 
-public class Exercice implements Q_E {
+import java.io.Serializable;
+
+public class Exercice implements Q_E , Serializable {
 	private String[] materiels;
 
 	public String[] getMateriels() {

@@ -2,21 +2,26 @@ package BaseClasses.Appointments;
 
 import Enums.EAppointment;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-public class Atelier extends Appointment {
+public class Atelier extends Appointment  implements Serializable {
     private String themathique ;
     List<Integer> patientMedFiles ;
-    private final LocalTime duration = LocalTime.of(1, 0);
-    public Atelier(LocalDate date, LocalTime hour, LocalTime duration, EAppointment appointmentType , String themathique) {
+
+    public Atelier(LocalDate date, Integer hour, Integer duration, EAppointment appointmentType , String themathique) {
         super(date, hour, duration, appointmentType);
         this.themathique = themathique ;
     }
 
     public Atelier() {
 
+    }
+
+    public void setThemathique(String themathique) {
+        this.themathique = themathique;
     }
 
     public void setPatientMedFiles(List<Integer> patientMedFiles){
