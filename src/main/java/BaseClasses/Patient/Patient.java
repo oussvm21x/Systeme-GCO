@@ -23,10 +23,16 @@ public  class Patient implements Serializable {
     protected Integer id ;
     private HashMap<LocalDate, Appointment[]> appointments ;
 
+
+
     public void deleteAppointment(LocalDate date) {
         if (appointments.containsKey(date)) {
             appointments.remove(date);
         }
+    }
+
+    public HashMap<LocalDate, Appointment[]> getAppointments() {
+        return appointments;
     }
 
     public String getAddress() {

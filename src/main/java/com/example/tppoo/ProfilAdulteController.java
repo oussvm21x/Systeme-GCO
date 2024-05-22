@@ -1,6 +1,7 @@
 package com.example.tppoo;
 
 import BaseClasses.Patient.Adult;
+import Enums.EPatient;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 
@@ -71,6 +72,19 @@ public void enregistrer (ActionEvent A){
 }
 
 
+    public void Dossier(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Dossier.fxml"));
+        Parent root = loader.load();
+        DossierRdvController controller = loader.getController();
+        controller.getInfo(this.id);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
     public void setValues() {
         nom.setText(Clinique.ortophonisteCourrant.getPatientSansDossier(id).getLastName());
         prenom.setText(Clinique.ortophonisteCourrant.getPatientSansDossier(id).getFirstName());
@@ -84,7 +98,7 @@ public void enregistrer (ActionEvent A){
 
 
     public void Compte(ActionEvent A) throws IOException{
-        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../../fxmlfiles/Sample.fxml")));
+        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
         stage = (Stage)(((Node)A.getSource()).getScene().getWindow());
         scene = new Scene (root);
         stage.setScene(scene);
@@ -94,7 +108,7 @@ public void enregistrer (ActionEvent A){
     }
 
     public void Dashboard(ActionEvent A) throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("com/example/tppoo/Sample.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
         stage = (Stage)(((Node)A.getSource()).getScene().getWindow());
         scene = new Scene (root);
         stage.setScene(scene);

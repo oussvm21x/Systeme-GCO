@@ -4,6 +4,7 @@ import BaseClasses.Appointments.Appointment;
 import BaseClasses.Patient.Patient;
 import BaseClasses.src.Clinique;
 import Enums.EAppointment;
+import Enums.EPatient;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,25 +31,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
-public class rdvController implements Initializable {
+public class DossierRdvController implements Initializable {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
     @FXML
-    private ScrollPane scrollpane;
-    @FXML
-    private DatePicker searchBar;
-    @FXML
-    private Button searchButtton ;
-    @FXML
-    private ComboBox type ;
-    @FXML
     private TableView<Appointment> table;
     @FXML
     private TableColumn<Appointment, String> typeColumn;
-   @FXML
+    @FXML
     private TableColumn<Appointment, String> titleColumn;
     @FXML
     private TableColumn<Appointment, LocalDate> dateColumn;
@@ -57,10 +50,16 @@ public class rdvController implements Initializable {
     @FXML
     private TableColumn<Appointment, String> durationColumn;
 
+    private  Integer id ;
+    public void getInfo(Integer id){
+        this.id = id ;
+        initializeWithId();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentType"));
-       titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         timeColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Appointment, String>, ObservableValue<String>>() {
             @Override
@@ -85,19 +84,17 @@ public class rdvController implements Initializable {
                 return new SimpleStringProperty(formattedTime);
             }
         });
-        displayAppointments();
-
-        type.getItems().addAll(
-                "Consultation",
-                "Suivi",
-                "Atelier"
-        );
+    }
+    private void initializeWithId() {
+        if (this.id != null) {
+            displayAppointments();
+        }
     }
 
     public void displayAppointments() {
         ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
-        if (Clinique.ortophonisteCourrant != null) {
-            Map<LocalDate, Appointment[]> appointmentsMap = Clinique.ortophonisteCourrant.getAppointments();
+        if (Clinique.ortophonisteCourrant.getPatientSansDossier(this.id)!= null) {
+            Map<LocalDate, Appointment[]> appointmentsMap =Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getAppointments();
             if (appointmentsMap != null) {
                 for (Map.Entry<LocalDate, Appointment[]> entry : appointmentsMap.entrySet()) {
                     LocalDate date = entry.getKey();
@@ -109,14 +106,51 @@ public class rdvController implements Initializable {
                     }
                 }
                 table.setItems(appointmentsList);
-            } else {
-                System.out.println("getAppointments() returned null.");
-            }
-        } else {
-            System.out.println("Clinique.ortophonisteCourrant is null.");
-        }
+            } }
 
     }
+
+
+    public void Dossier(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierBO.fxml"));
+        Parent root = loader.load();
+        DossierBOController controller = loader.getController();
+        controller.getInfo(this.id);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+    public void Profil(ActionEvent event) throws IOException{
+        try {
+            FXMLLoader loader;
+            Parent root;
+            if (Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getType().equals(EPatient.ADULT)) {
+                loader = new FXMLLoader(getClass().getResource("ProfilAdulte.fxml"));
+                root = loader.load();
+                ProfilAdulteController controller = loader.getController();
+                controller.getInfo(Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getId());
+                controller.setValues();
+            } else {
+                loader = new FXMLLoader(getClass().getResource("ProfilEnfant.fxml"));
+                root = loader.load();
+                ProfilEnfantController controller = loader.getController();
+                controller.getInfo(Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getId());
+                controller.setValues();
+            }
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 
     @FXML
@@ -145,7 +179,7 @@ public class rdvController implements Initializable {
 
     @FXML
     public void Dashboard(ActionEvent A) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("com/example/tppoo/Sample.fxml")));
         stage = (Stage)(((Node)A.getSource()).getScene().getWindow());
         scene = new Scene (root);
         stage.setScene(scene);
@@ -189,71 +223,6 @@ public class rdvController implements Initializable {
         scene = new Scene (root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void Searche(ActionEvent A) throws  IOException {
-        HashMap<LocalDate, Appointment[]> appointments = Clinique.ortophonisteCourrant.getAppointments();
-        ArrayList<Appointment> filteredAppointments = new ArrayList<>();
-        String selectedType = (String) type.getSelectionModel().getSelectedItem();
-
-        if (searchBar.getValue() == null){
-                if (selectedType == null) {
-                    for (Appointment[] appointmentArray : appointments.values()) {
-                        for (Appointment appointment : appointmentArray) {
-                            filteredAppointments.add(appointment);
-                        }
-                    }
-                } else {
-                    EAppointment Type;
-                    if (selectedType.equals("Atelier")) {
-                        Type = EAppointment.ATELIER;
-                    } else if (selectedType.equals("Suivi")) {
-                        Type = EAppointment.FOLLOW_UP;
-                    } else {
-                        Type = EAppointment.CONSULTATION;
-                    }
-                    for (Appointment[] appointmentArray : appointments.values()) {
-                        for (Appointment appointment : appointmentArray) {
-                            if (appointment.getAppointmentType().equals(Type)) {
-                                filteredAppointments.add(appointment);
-                            }
-                        }
-                    }
-                }
-        }else {
-            LocalDate Date= searchBar.getValue();
-
-            if (selectedType == null) {
-                if (appointments.containsKey(Date)) {
-                    Appointment[] appointmentsArray = appointments.get(Date);
-                    for (Appointment appointment : appointmentsArray) {
-                        filteredAppointments.add(appointment);
-                    }
-                }
-            } else {
-                EAppointment Type;
-                if (selectedType == "Atelier"){
-                  Type = EAppointment.ATELIER;
-                }else {
-                    if(selectedType == "Suivi"){
-                   Type = EAppointment.FOLLOW_UP;
-                    }else
-                        Type = EAppointment.CONSULTATION;
-                }
-                if (appointments.containsKey(Date)) {
-                    Appointment[] appointmentsArray = appointments.get(Date);
-                    for (Appointment appointment : appointmentsArray) {
-                        if (appointment.getAppointmentType().equals(Type)) {
-                            filteredAppointments.add(appointment);
-                        }
-                    }
-                }
-            }
-
-        }
-        table.getItems().clear();
-        ObservableList<Appointment> observableAppointments = FXCollections.observableArrayList(filteredAppointments);
-        table.setItems(observableAppointments);
     }
 
     public void deleteSelectedRdv(ActionEvent event) {
