@@ -11,8 +11,8 @@ public class TestQuestions extends Test implements Q_E, Serializable {
     Map<Question , Float> scores ;
 
     //constructor
-    public TestQuestions(String testName, String conclusion, HashSet<Question> questions, Map<Question, Float> scores) {
-        super(testName, conclusion);
+    public TestQuestions(String testName, HashSet<Question> questions, Map<Question, Float> scores) {
+        super(testName);
         this.questions = questions;
         this.scores = scores;
     }
@@ -31,5 +31,10 @@ public class TestQuestions extends Test implements Q_E, Serializable {
     public Map<Question, Float> getScores() {
         return scores;
     }
+    public void addScore(Question e , Float score){
+        scores.put(e , score);
+    }
+
+
 
 }

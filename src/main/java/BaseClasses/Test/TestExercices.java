@@ -10,8 +10,8 @@ public class TestExercices extends Test implements Q_E , Serializable {
     private List<Exercice> exercices  ;
     private Map<Exercice , Float> scores ;
 
-    public TestExercices(String testName, String conclusion, List<Exercice> exercices, Map<Exercice, Float> scores) {
-        super(testName, conclusion);
+    public TestExercices(String testName,  List<Exercice> exercices, Map<Exercice, Float> scores) {
+        super(testName);
         this.exercices = exercices;
         this.scores = scores;
     }
@@ -29,6 +29,10 @@ public class TestExercices extends Test implements Q_E , Serializable {
     }
     public Map<Exercice, Float> getScores() {
         return scores;
+    }
+    //add value to an exercices in the scores map
+    public void addScore(Exercice e , Float score){
+        scores.put(e , score);
     }
 
 }
