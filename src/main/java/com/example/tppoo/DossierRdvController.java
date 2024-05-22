@@ -110,6 +110,23 @@ public class DossierRdvController implements Initializable {
 
     }
 
+    public void checkRdv(ActionEvent event) {
+        Appointment selectedRdv = table.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoRdvPatient.fxml"));
+                Parent root = loader.load();
+                InfoRDVController controller = loader.getController();
+                controller.getInfo(selectedRdv);
+                controller.setValues();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
+    }
 
     public void Dossier(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierBO.fxml"));
@@ -125,20 +142,20 @@ public class DossierRdvController implements Initializable {
 
 
     public void Profil(ActionEvent event) throws IOException{
-        try {
+      try {
             FXMLLoader loader;
             Parent root;
             if (Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getType().equals(EPatient.ADULT)) {
                 loader = new FXMLLoader(getClass().getResource("ProfilAdulte.fxml"));
                 root = loader.load();
                 ProfilAdulteController controller = loader.getController();
-                controller.getInfo(Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getId());
+                controller.getInfo(this.id);
                 controller.setValues();
             } else {
                 loader = new FXMLLoader(getClass().getResource("ProfilEnfant.fxml"));
                 root = loader.load();
                 ProfilEnfantController controller = loader.getController();
-                controller.getInfo(Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getId());
+                controller.getInfo(this.id);
                 controller.setValues();
             }
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

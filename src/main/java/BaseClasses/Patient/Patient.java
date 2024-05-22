@@ -23,7 +23,9 @@ public  class Patient implements Serializable {
     protected Integer id ;
     private HashMap<LocalDate, Appointment[]> appointments ;
 
-
+    public void setDossier(Dossier dossier) {
+        this.dossier = dossier;
+    }
 
     public void deleteAppointment(LocalDate date) {
         if (appointments.containsKey(date)) {

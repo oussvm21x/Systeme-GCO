@@ -37,7 +37,7 @@
                         <Insets bottom="13.0" />
                     </opaqueInsets>
                 </Button>
-                <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: #0066b2;" text="Dossier" textFill="WHITE" underline="true" />
+                <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: #0066b2;" text="Dossier" textFill="WHITE" underline="true" />
                 <Line endX="331.0" layoutX="168.0" layoutY="28.0" startX="-166.99998474121094" />
                 <Button fx:id="Appointements1" layoutX="42.0" layoutY="41.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: white;" text="RDV" underline="true" />
                 <Button fx:id="Appointements11" layoutX="272.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: #0066b2;" text="Bilans" textFill="WHITE" underline="true" />

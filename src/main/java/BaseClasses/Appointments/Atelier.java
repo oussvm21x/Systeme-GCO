@@ -20,6 +20,10 @@ public class Atelier extends Appointment  implements Serializable {
 
     }
 
+    public String getThemathique() {
+        return themathique;
+    }
+
     public void setThemathique(String themathique) {
         this.themathique = themathique;
     }

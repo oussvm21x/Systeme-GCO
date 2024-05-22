@@ -38,7 +38,7 @@
                   <Insets bottom="13.0" />
                </opaqueInsets>
             </Button>
-            <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="161.0" style="-fx-background-color: white;" text="Rdv" underline="true" />
+            <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="161.0" style="-fx-background-color: white;" text="Dossier" underline="true" />
             <Line endX="331.0" layoutX="168.0" layoutY="28.0" startX="-100.0" />
             <TextField fx:id="nom" layoutX="68.0" layoutY="74.0" prefHeight="27.0" prefWidth="147.0" />
             <TextField fx:id="prenom" layoutX="300.0" layoutY="74.0" prefHeight="27.0" prefWidth="147.0" />

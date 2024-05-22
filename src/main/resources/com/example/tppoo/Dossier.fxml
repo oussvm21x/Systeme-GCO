@@ -37,7 +37,7 @@
                         <Insets bottom="13.0" />
                     </opaqueInsets>
                 </Button>
-                <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: #0066b2;" text="Dossier" textFill="WHITE" underline="true" />
+                <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="174.0" style="-fx-background-color: #0066b2;" text="Dossier" textFill="WHITE" underline="true" />
                 <Line endX="331.0" layoutX="168.0" layoutY="28.0" startX="-166.99998474121094" />
                 <Button fx:id="Appointements1" layoutX="42.0" layoutY="41.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: #0066b2;" text="RDV" textFill="WHITE" underline="true" />
                 <Button fx:id="Appointements11" layoutX="272.0" layoutY="41.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: white;" text="Bilans" underline="true" />
@@ -51,7 +51,7 @@
                         <TableColumn fx:id="durationColumn" minWidth="0.0" prefWidth="80.00003051757812" text="Durée" />
                     </columns>
                 </TableView>
-                <Button layoutX="413.0" layoutY="323.0" mnemonicParsing="false" style="-fx-background-color: #0066b2;" text="Consulter" textFill="WHITE" />
+                <Button fx:id="consulter" layoutX="413.0" layoutY="323.0" mnemonicParsing="false" onAction="#checkRdv" style="-fx-background-color: #0066b2;" text="Consulter" textFill="WHITE" />
             </children>
         </Pane>
     </children>

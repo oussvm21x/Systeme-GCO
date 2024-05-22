@@ -269,4 +269,23 @@ public class rdvController implements Initializable {
             Clinique.sauvegarderClinique("Clinique.txt");
         }
     }
+
+
+    public void checkRdv(ActionEvent event) {
+        Appointment selectedRdv = table.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("InfoRdv.fxml"));
+                Parent root = loader.load();
+                InfoRDVController controller = loader.getController();
+                controller.getInfo(selectedRdv);
+                controller.setValues();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
+        }
 }

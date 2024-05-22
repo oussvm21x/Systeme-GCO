@@ -11,6 +11,7 @@ public class Dossier implements Serializable {
     List<Bilan> bilans ;
     List<Appointment> appointments ;
     List<FicheSuivi> fichesSuivis  ;
+    static int nbdossier;
 
     //constructor
     public Dossier(int numDossier, List<Bilan> bilans, List<Appointment> appointments, List<FicheSuivi> fichesSuivis) {
@@ -20,7 +21,8 @@ public class Dossier implements Serializable {
         this.fichesSuivis = fichesSuivis;
     }
     public Dossier(){
-
+setNumDossier(nbdossier);
+        nbdossier++;
     }
 
     //getters and setters
