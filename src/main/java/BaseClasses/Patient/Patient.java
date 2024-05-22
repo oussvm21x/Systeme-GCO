@@ -2,12 +2,10 @@ package BaseClasses.Patient;
 
 import BaseClasses.Appointments.Appointment;
 import BaseClasses.src.Dossier;
-import Enums.EAppointment;
 import Enums.EPatient;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -128,6 +126,10 @@ public  class Patient implements Serializable {
         } else {
             appointments.put(date, new Appointment[]{ newAppointment });
         }
+    }
+
+    public boolean checkDossier(){
+        return this.dossier.getNumDossier() != -1;
     }
 
 }
