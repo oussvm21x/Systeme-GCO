@@ -5,9 +5,11 @@ import Interfaces.Q_E;
 import java.io.Serializable;
 
 public class Question implements Q_E, Serializable {
-    private String enonce; 
-	private float score; 
-	
+    protected String enonce;
+	protected float score;
+
+	//constructor
+
 	
     @Override
     public void setQuestions() {

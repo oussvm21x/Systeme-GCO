@@ -10,10 +10,7 @@ public class Bilan implements Serializable {
     private Queue<Etape> etapes;
     private Patient patient ;
     //constructeur
-  /*  public Bilan(Queue<Etape> etapes, Patient patient) {
-        this.etapes = etapes;
-        this.patient = patient;
-    }*/
+
     //getters et setters
     public Queue<Etape> getEtapes() {
         return etapes;
@@ -41,5 +38,10 @@ public class Bilan implements Serializable {
             System.out.println(etape);
         }
     }
-
+    public Bilan newBilan(Patient patient){
+        if(patient.checkDossier()){
+            return new Bilan() ;
+        }
+        else return null ;
+    }
 }

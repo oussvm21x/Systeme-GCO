@@ -3,30 +3,30 @@ package BaseClasses.Test;
 import Interfaces.Q_E;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class QCU extends Question implements Q_E , Serializable {
 
-    String[]possiblesAnswers ;
+    List<String> possiblesAnswers ;
     int answer ;
     int correctAnswer ;
 
-    public QCU(String[] possiblesAnswers, int answer, int correctAnswer) {
+    public QCU(List<String> possiblesAnswers, int answer, int correctAnswer) {
         this.possiblesAnswers = possiblesAnswers;
         this.answer = answer;
         this.correctAnswer = correctAnswer;
     }
 
-    public String[] getPossiblesAnswers() {
+    public List<String> getPossiblesAnswers() {
         return possiblesAnswers;
     }
 
-    public void setPossiblesAnswers(String[] possiblesAnswers) {
+    public void setPossiblesAnswers(List<String> possiblesAnswers) {
         this.possiblesAnswers = possiblesAnswers;
     }
 
-
     public void setAnswer(int answer) {
-            this.answer = answer;
+        this.answer = answer;
     }
 
     public int getAnswer() {
@@ -42,43 +42,34 @@ public class QCU extends Question implements Q_E , Serializable {
     }
 
     public void addPossibleAnswer(String possibleAnswer) {
-        String[] newPossibleAnswers = new String[this.possiblesAnswers.length + 1];
-        for(int i = 0; i < this.possiblesAnswers.length; i++){
-            newPossibleAnswers[i] = this.possiblesAnswers[i];
-        }
-        newPossibleAnswers[this.possiblesAnswers.length] = possibleAnswer;
-        this.possiblesAnswers = newPossibleAnswers;
+        this.possiblesAnswers.add(possibleAnswer);
     }
 
     public void removePossibleAnswer(String possibleAnswer) {
-        String[] newPossibleAnswers = new String[this.possiblesAnswers.length - 1];
-        int j = 0;
-        for(int i = 0; i < this.possiblesAnswers.length; i++){
-            if(this.possiblesAnswers[i] != possibleAnswer){
-                newPossibleAnswers[j] = this.possiblesAnswers[i];
-                j++;
-            }
-        }
-        this.possiblesAnswers = newPossibleAnswers;
+        this.possiblesAnswers.remove(possibleAnswer);
     }
 
-
-
-
-
-
-    @Override
-    public void setQuestions() {
-
+    public void setAnswers(int answer) {
+        this.answer = answer;
+    }
+    public void setQuestions (String enonce, List<String> possiblesAnswers, int answer, int correctAnswer) {
+        this.enonce = enonce;
+        this.possiblesAnswers = possiblesAnswers;
+        this.answer = answer;
+        this.correctAnswer = correctAnswer;
     }
 
     @Override
     public String getAnswers() {
-        return "";
+        return String.valueOf(answer);
     }
 
     @Override
     public void calculateScore() {
-
+        if (this.answer == this.correctAnswer) {
+            this.score = 100;
+        } else {
+            this.score = 0;
+        }
     }
 }

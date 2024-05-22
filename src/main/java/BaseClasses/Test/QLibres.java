@@ -14,11 +14,8 @@ public class QLibres extends Question implements Q_E, Serializable {
 
     @Override
     public String getAnswers() {
-        return "";
+        return Answer ; 
     }
 
-    @Override
-    public void calculateScore() {
 
-    }
 }
