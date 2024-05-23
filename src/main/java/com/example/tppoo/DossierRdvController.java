@@ -91,6 +91,7 @@ public class DossierRdvController implements Initializable {
         }
     }
 
+
     public void displayAppointments() {
         ObservableList<Appointment> appointmentsList = FXCollections.observableArrayList();
         if (Clinique.ortophonisteCourrant.getPatientSansDossier(this.id)!= null) {

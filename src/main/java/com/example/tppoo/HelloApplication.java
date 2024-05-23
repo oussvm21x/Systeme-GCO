@@ -1,8 +1,12 @@
 package com.example.tppoo;
 
+import BaseClasses.Bilan.AnamneseAdult;
+import BaseClasses.Bilan.AnamneseKid;
 import BaseClasses.Patient.Adult;
 import BaseClasses.Patient.Child;
 import BaseClasses.Patient.Patient;
+import BaseClasses.Test.Question;
+import BaseClasses.Test.Test;
 import BaseClasses.src.Clinique;
 import BaseClasses.src.Dossier;
 import BaseClasses.src.Ortophoniste;
@@ -22,6 +26,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
+            AnamneseAdult.restoreStaticData("AnamneseAdultQ.txt");
+            AnamneseKid.restoreStaticData("AnamneseKidQ.txt");
+            Test.restoreStaticData("Test.txt");
             Clinique.chargerClinique("Clinique.txt");
         AnchorPane root = (AnchorPane)FXMLLoader.load(Objects.requireNonNull(getClass().getResource("connection.fxml")));
             Scene scene = new Scene(root,400,400);

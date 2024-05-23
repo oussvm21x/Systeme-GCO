@@ -11,9 +11,9 @@ public class QCU extends Question implements Q_E , Serializable {
     int answer ;
     int correctAnswer ;
 
-    public QCU(List<String> possiblesAnswers, int answer, int correctAnswer) {
+    public QCU( String enonce,List<String> possiblesAnswers,  int correctAnswer) {
         this.possiblesAnswers = possiblesAnswers;
-        this.answer = answer;
+     this.enonce = enonce ;
         this.correctAnswer = correctAnswer;
     }
 

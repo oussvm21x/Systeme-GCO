@@ -171,7 +171,7 @@ public class PatientController implements Initializable {
 
     @FXML
     public void Dashboard(ActionEvent A) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("com/example/tppoo/Sample.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Sample.fxml")));
         stage = (Stage)(((Node)A.getSource()).getScene().getWindow());
         scene = new Scene (root);
         stage.setScene(scene);

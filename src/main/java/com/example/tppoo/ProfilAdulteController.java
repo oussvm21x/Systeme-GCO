@@ -85,6 +85,7 @@ public void enregistrer (ActionEvent A){
 
 
 
+
     public void setValues() {
         nom.setText(Clinique.ortophonisteCourrant.getPatientSansDossier(id).getLastName());
         prenom.setText(Clinique.ortophonisteCourrant.getPatientSansDossier(id).getFirstName());

@@ -2,10 +2,13 @@ package com.example.tppoo;
 
 import BaseClasses.Appointments.Appointment;
 import BaseClasses.Appointments.Atelier;
+import BaseClasses.Bilan.AnamneseAdult;
+import BaseClasses.Bilan.AnamneseKid;
 import BaseClasses.Patient.Patient;
 import BaseClasses.src.Clinique;
 import BaseClasses.src.Dossier;
 import Enums.EAppointment;
+import Enums.EPatient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

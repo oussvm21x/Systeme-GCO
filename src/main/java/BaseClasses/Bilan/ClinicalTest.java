@@ -5,9 +5,29 @@ import BaseClasses.Test.Test;
 public class ClinicalTest extends Etape{
     private String observationClinique ;
     private Test test ;
+    private Integer num ;
+    private String titre ;
 
-    public ClinicalTest(String observationClinique, Test test) {
 
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public Integer getnum() {
+        return num;
+    }
+
+    public void setnum(Integer num) {
+        this.num = num;
+    }
+
+    public ClinicalTest() {
+        Test e = new Test("test");
+        this.test =e;
     }
     //getters and setters
     public String getObservationClinique() {

@@ -1,14 +1,17 @@
 package BaseClasses.src;
 
 import BaseClasses.Appointments.Appointment;
+import BaseClasses.Bilan.Anamnese;
 import BaseClasses.Bilan.Bilan;
+import BaseClasses.Bilan.ClinicalTest;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.*;
 
 public class Dossier implements Serializable {
     int numDossier = -1;
-    List<Bilan> bilans ;
+    List<Bilan> bilans = new ArrayList<Bilan>() ;
     List<Appointment> appointments ;
     List<FicheSuivi> fichesSuivis  ;
     static int nbdossier;
@@ -23,6 +26,11 @@ public class Dossier implements Serializable {
     public Dossier(){
 setNumDossier(nbdossier);
         nbdossier++;
+        Bilan b = new Bilan();
+        b.setTitle("Premier Bilan Ortophoniste");
+        b.setId(0);
+        bilans.add(b);
+        System.out.println("bilan0 "+ bilans);
     }
 
     //getters and setters

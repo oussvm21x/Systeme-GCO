@@ -32,67 +32,36 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
-public class DossierBOController implements Initializable {
+public class BilanController {
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+
+
     @FXML
-    private TableView<Bilan> table;
+    private Button Anamnese;
     @FXML
-    private TableColumn<Bilan, String> ListeBO;
+    private Button epreuveClinique;
     @FXML
-    private TableColumn<Bilan, Integer> num;
+    private Button Diagnostic ;
+    @FXML
+    private Button ProjetT;
 
-
-    private  Integer id ;
-    public void getInfo(Integer id){
-        this.id = id ;
-        initializeWithId();
+    private Bilan bilan ;
+    private Integer id ;
+    public void getInfo(Integer id,Bilan bilan){
+        this.id =id;
+        this.bilan = bilan ;
     }
 
 
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ListeBO.setCellValueFactory(new PropertyValueFactory<>("title"));
-       num.setCellValueFactory(new PropertyValueFactory<>("id"));
-    }
-    private void initializeWithId() {
-        if (this.id != null) {
-            displayBO();
-        }
-    }
-
-    public void displayBO() {
-    if ( Clinique.ortophonisteCourrant.getPatientSansDossier(this.id) .getDossier()!= null){
-        List<Bilan> bilans = Clinique.ortophonisteCourrant.getPatientSansDossier(this.id).getDossier().getBilans();
-        System.out.println(("Bilans ,"+bilans));
-        if (bilans != null) {
-            ObservableList<Bilan> BOList = FXCollections.observableArrayList(bilans);
-            table.setItems(BOList);
-        }
-    }else {
-        showAlert("Créer un dossier d'abord");
-    }
-
-    }
-
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-
-    public void Dossier(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Dossier.fxml"));
+    public void Epreuves(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierBO.fxml"));
         Parent root = loader.load();
-        DossierRdvController controller = loader.getController();
+        DossierBOController controller = loader.getController();
         controller.getInfo(this.id);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -100,16 +69,49 @@ public class DossierBOController implements Initializable {
         stage.show();
     }
 
-
-
-    @FXML
-    public void Ajouter(ActionEvent A) throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AjouterRdv.fxml")));
-        stage = (Stage)(((Node)A.getSource()).getScene().getWindow());
-        scene = new Scene (root);
+    public void Diagnostic(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierBO.fxml"));
+        Parent root = loader.load();
+        DossierBOController controller = loader.getController();
+        controller.getInfo(this.id);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
 
+    public void Test(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("EpreuvesT.fxml"));
+        Parent root = loader.load();
+        EpreuvesController controller = loader.getController();
+       controller.getInfo(this.id,this.bilan);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ProjetT(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProjetT.fxml"));
+        Parent root = loader.load();
+        ProjetT controller = loader.getController();
+        controller.getInfo(this.id,this.bilan);
+        controller.setValues();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void Anamnese(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Anamnese.fxml"));
+        Parent root = loader.load();
+        AnamneseController controller = loader.getController();
+        controller.getInfo(this.id,this.bilan,null);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 
@@ -138,6 +140,19 @@ public class DossierBOController implements Initializable {
             e.printStackTrace();
         }
     }
+    public void Dossier(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierBO.fxml"));
+        Parent root = loader.load();
+        DossierBOController controller = loader.getController();
+        controller.getInfo(this.id);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
 
 
 
@@ -202,26 +217,5 @@ public class DossierBOController implements Initializable {
         stage.show();
     }
 
-    public void checkRdv(ActionEvent event) {
-        Bilan selectedRdv = table.getSelectionModel().getSelectedItem();
-        if (selectedRdv != null) {
-            try {
-                FXMLLoader loader;
-                if (selectedRdv.getId()== 0){
-                    loader = new FXMLLoader(getClass().getResource("Bilan.fxml"));
-                }else {
-                    loader = new FXMLLoader(getClass().getResource("BilanSup0.fxml"));
-                }
-                Parent root = loader.load();
-                BilanController controller = loader.getController();
-                controller.getInfo(this.id,selectedRdv);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }}
-    }
-
 }
+
