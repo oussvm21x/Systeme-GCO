@@ -60,7 +60,7 @@ public class EpreuvesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("num"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("titre"));
     }
 

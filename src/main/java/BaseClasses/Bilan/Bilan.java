@@ -16,6 +16,7 @@ public class Bilan implements Serializable {
     private String title;
     private String observation ;
     private int id;
+    private static int nb =0;
 
     public String getObservation() {
         return observation;
@@ -27,6 +28,8 @@ public class Bilan implements Serializable {
 
     // Constructor
     public Bilan() {
+        nb++ ;
+        this.id =nb;
         this.etape2 = new ArrayList<>();
     }
 

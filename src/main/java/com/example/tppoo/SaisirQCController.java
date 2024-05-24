@@ -68,6 +68,7 @@ public class SaisirQCController {
         }
 
        if(qcm){
+           System.out.println(SelectedAnswers);
            ((QCM)this.question).setAnswers(SelectedAnswers);
            ((QCM)this.question).calculateScore();
        }else {
@@ -100,16 +101,21 @@ public class SaisirQCController {
         container.setSpacing(10);
 
         if (qcm && ((QCM)this.question).getPossiblesAnswers()!= null) {
-                for (String answer : ((QCM)this.question).getPossiblesAnswers()) {
-                    Pane pane = createEntryPane(answer, Answers.indexOf(answer));
-                    container.getChildren().add(pane);
+            for (int i = 0; i < ((QCM)this.question).getPossiblesAnswers().size(); i++) {
+                final int index = i;
+                String answer = ((QCM)this.question).getPossiblesAnswers().get(i);
+                Pane pane = createEntryPane(answer, index);
+                container.getChildren().add(pane);
             }
-        } else if (!qcm &&((QCU)this.question).getPossiblesAnswers() != null) {
-                for (String answer :((QCU)this.question).getPossiblesAnswers()) {
-                    Pane pane = createEntryPane(answer, Answers.indexOf(answer));
-                    container.getChildren().add(pane);
 
+        } else if (!qcm &&((QCU)this.question).getPossiblesAnswers() != null) {
+            for (int i = 0; i < ((QCU)this.question).getPossiblesAnswers().size(); i++) {
+                final int index = i;
+                String answer = ((QCU)this.question).getPossiblesAnswers().get(i);
+                Pane pane = createEntryPane(answer, index);
+                container.getChildren().add(pane);
             }
+
         }
 
         if (Answers != null) {

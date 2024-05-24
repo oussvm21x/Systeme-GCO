@@ -188,7 +188,7 @@ public class RdvPatientController implements Initializable {
 
     private Pane createEntryPane(Patient patient) {
         Pane entryPane = new Pane();
-        entryPane.setPrefWidth(400);
+        entryPane.setPrefWidth(440);
         entryPane.setPrefHeight(50);
 
         BorderStroke borderStroke = new BorderStroke(

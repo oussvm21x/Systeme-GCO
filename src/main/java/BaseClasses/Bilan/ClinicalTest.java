@@ -7,6 +7,8 @@ public class ClinicalTest extends Etape{
     private Test test ;
     private Integer num ;
     private String titre ;
+    private int id ;
+    private static int nb=0 ;
 
 
     public String getTitre() {
@@ -25,7 +27,13 @@ public class ClinicalTest extends Etape{
         this.num = num;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public ClinicalTest() {
+        this.id=nb ;
+        nb++;
         Test e = new Test("test");
         this.test =e;
     }

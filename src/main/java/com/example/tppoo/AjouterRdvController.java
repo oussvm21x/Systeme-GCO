@@ -62,7 +62,7 @@ public class AjouterRdvController implements Initializable  {
             hour.setText("Veuillez entrez une heure valide ");
             return;
         }
-        if (Integer.parseInt(Minute.getText())<0 || Integer.parseInt(Minute.getText())>23 ){
+        if (Integer.parseInt(Minute.getText())<0 || Integer.parseInt(Minute.getText())>60 ){
             Minute.setStyle("-fx-border-color: red;");
             Minute.setText("Veuillez entrez une heure valide ");
             return;

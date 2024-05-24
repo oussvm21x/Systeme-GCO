@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,9 @@ public class AjouterExoController {
     private TextArea enonce;
     @FXML
     private TextArea materiel;
+    @FXML
+    private TextField note;
+
 
 
     private Integer id;
@@ -47,14 +51,16 @@ public class AjouterExoController {
             showAlert("Erreur", "Le texte de la question est vide. Veuillez fournir le texte de la question.");
             return;
         }
-
-        if (materiel.getText().isEmpty()) {
-            showAlert("Erreur", "Aucune réponse fournie. Veuillez fournir au moins une réponse.");
+        if (note.getText().isEmpty()) {
+            showAlert("Erreur", "La note est vide.");
             return;
         }
 
+
+
         Exercice e = new Exercice();
         e.setConsigne(enonce.getText());
+        e.setScore( Integer.parseInt(note.getText()));
         e.setMateriels(materiel.getText());
 
         this.test.getTest().addExerciceQuestion(e);
