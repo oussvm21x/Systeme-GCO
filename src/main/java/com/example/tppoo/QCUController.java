@@ -175,5 +175,21 @@ public class QCUController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void checkRdv(ActionEvent event) {
+        Question selectedRdv = table.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null ) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SaisirReponseQC.fxml"));
+                Parent root = loader.load();
+                SaisirQCController controller = loader.getController();
+                controller.getInfo(this.id , this.bilan , this.Test , false , selectedRdv);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
+    }
 
 }

@@ -46,7 +46,7 @@
       <ComboBox fx:id="type" layoutX="323.0" layoutY="20.0" prefHeight="27.0" prefWidth="161.0" />
       <Button fx:id="searchButton" layoutX="506.0" layoutY="18.0" minWidth="45.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="45.0" style="-fx-background-color: #0066b2;" text="O" />
       <Button fx:id="AjouetQ" layoutX="416.0" layoutY="344.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter Question" textFill="WHITE" />
-      <Button fx:id="Reponse" layoutX="159.0" layoutY="344.0" mnemonicParsing="false" style="-fx-background-color: #0066b2;" text="Entrer la réponse du patient" textFill="WHITE" />
+      <Button fx:id="Reponse" layoutX="159.0" layoutY="344.0" mnemonicParsing="false" onAction="#checkRdv" style="-fx-background-color: #0066b2;" text="Entrer la réponse du patient" textFill="WHITE" />
       <Button fx:id="terminer" layoutX="618.0" layoutY="344.0" mnemonicParsing="false" onAction="#Terminer" style="-fx-background-color: #0066b2;" text="Terminer" textFill="WHITE" />
     </children>
 </AnchorPane>

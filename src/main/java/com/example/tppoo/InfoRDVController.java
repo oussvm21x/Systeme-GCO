@@ -112,8 +112,6 @@ public class InfoRDVController {
 
     public void setValues() {
         titre.setText(this.appointment.getTitle());
-
-        // Format the date and time
         LocalDate appointmentDate = this.appointment.getDate();
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String formattedDate = appointmentDate.format(dateFormatter);
@@ -166,6 +164,25 @@ public class InfoRDVController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void Observation(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ObservationRDV.fxml"));
+            Parent root = loader.load();
+            ObservationRDVController controller = loader.getController();
+            controller.getInfo(this.appointment);
+            controller.setValues();
+
+            Stage stage = (Stage)(((Node) event.getSource()).getScene().getWindow());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Other methods for navigation
 

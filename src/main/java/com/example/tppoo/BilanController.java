@@ -2,7 +2,6 @@ package com.example.tppoo;
 
 import BaseClasses.Appointments.Appointment;
 import BaseClasses.Bilan.Bilan;
-import BaseClasses.Patient.Patient;
 import BaseClasses.src.Clinique;
 import Enums.EAppointment;
 import Enums.EPatient;
@@ -48,7 +47,6 @@ public class BilanController {
     private Button Diagnostic ;
     @FXML
     private Button ProjetT;
-
     private Bilan bilan ;
     private Integer id ;
     public void getInfo(Integer id,Bilan bilan){
@@ -70,10 +68,20 @@ public class BilanController {
     }
 
     public void Diagnostic(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DossierBO.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Diagnostic.fxml"));
         Parent root = loader.load();
-        DossierBOController controller = loader.getController();
-        controller.getInfo(this.id);
+        DiagnosticController controller = loader.getController();
+        controller.getInfo(this.id, this.bilan );
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void Observation(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Observation.fxml"));
+        Parent root = loader.load();
+        ObservationController controller = loader.getController();
+        controller.getInfo(this.id, this.bilan);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);

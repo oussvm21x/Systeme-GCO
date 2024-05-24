@@ -206,5 +206,22 @@ public class AnamneseController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void checkRdv(ActionEvent event) {
+        Question selectedRdv = table.getSelectionModel().getSelectedItem();
+        if (selectedRdv != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SaisirReponseLibre.fxml"));
+                Parent root = loader.load();
+                SaisirQLibreController controller = loader.getController();
+                controller.getInfo(this.id, this.bilan, this.Test, true, selectedRdv);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-}
+    }}
+

@@ -14,7 +14,16 @@ public class Bilan implements Serializable {
     private TeurapeuticProject etape4;
     private Patient patient;
     private String title;
+    private String observation ;
     private int id;
+
+    public String getObservation() {
+        return observation;
+    }
+
+    public void setObservation(String observation) {
+        this.observation = observation;
+    }
 
     // Constructor
     public Bilan() {

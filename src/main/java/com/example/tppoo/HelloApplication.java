@@ -28,7 +28,6 @@ public class HelloApplication extends Application {
         try {
             AnamneseAdult.restoreStaticData("AnamneseAdultQ.txt");
             AnamneseKid.restoreStaticData("AnamneseKidQ.txt");
-            Test.restoreStaticData("Test.txt");
             Clinique.chargerClinique("Clinique.txt");
         AnchorPane root = (AnchorPane)FXMLLoader.load(Objects.requireNonNull(getClass().getResource("connection.fxml")));
             Scene scene = new Scene(root,400,400);

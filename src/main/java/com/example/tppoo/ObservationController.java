@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import javax.swing.text.html.ImageView;
 
 
-public class ProjetT {
+public class ObservationController {
     private Stage stage ;
     private Scene scene ;
     private Parent root ;
@@ -39,24 +39,18 @@ public class ProjetT {
         this.bilan = bilan ;
     }
 
-public void setValues(){
-      if(this.bilan.getEtape4() != null)
-    demarche.setText(this.bilan.getEtape4().getDemarche());
-}   @FXML
+    public void setValues(){
+        if(this.bilan.getEtape4() != null)
+            demarche.setText(this.bilan.getObservation());
+    }
+
+    @FXML
     public void Terminer(ActionEvent event) {
         if (demarche.getText().isEmpty()) {
             demarche.setStyle("-fx-border-color: red;");
             demarche.setText("Veuillez remplir ce champ");
         } else {
-            TeurapeuticProject e;
-            if (this.bilan.getEtape4() == null) {
-                e = new TeurapeuticProject();
-            } else {
-                e = this.bilan.getEtape4();
-            }
-            e.setDemarche(demarche.getText());
-            this.bilan.setEtape4(e);
-            Clinique.sauvegarderClinique("Clinique.txt");
+           this.bilan.setObservation(demarche.getText());
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Bilan.fxml"));
                 Parent root = loader.load();
@@ -70,7 +64,7 @@ public void setValues(){
                 ex.printStackTrace();
             }
         }
-
+        Clinique.sauvegarderClinique("Clinique.txt");
     }
 
 

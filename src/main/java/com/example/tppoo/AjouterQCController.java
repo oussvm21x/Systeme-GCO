@@ -6,6 +6,7 @@ import BaseClasses.Test.QCM;
 import BaseClasses.Test.QCU;
 import BaseClasses.Test.Question;
 import BaseClasses.Test.Test;
+import BaseClasses.src.Clinique;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,7 +82,7 @@ public class AjouterQCController {
             e = new QCU(enonce.getText(), Answers, SelectedAnswers.get(0));
             this.test.getTest().addQCUQuestion((QCU) e);
         }
-        Test.saveStaticData("Test.txt");
+        Clinique.sauvegarderClinique("Clinique.txt");
 
         FXMLLoader loader;
         Parent root;
@@ -105,22 +106,6 @@ public class AjouterQCController {
     private void populateScrollPane() {
         VBox container = new VBox();
         container.setSpacing(10);
-
-        if (qcm && this.test.getTest().getQCMQuestions() != null) {
-            for (QCM question : this.test.getTest().getQCMQuestions()) {
-                for (String answer : question.getPossiblesAnswers()) {
-                    Pane pane = createEntryPane(answer, Answers.indexOf(answer));
-                    container.getChildren().add(pane);
-                }
-            }
-        } else if (!qcm && this.test.getTest().getQCUQuestions() != null) {
-            for (QCU question : this.test.getTest().getQCUQuestions()) {
-                for (String answer : question.getPossiblesAnswers()) {
-                    Pane pane = createEntryPane(answer, Answers.indexOf(answer));
-                    container.getChildren().add(pane);
-                }
-            }
-        }
 
         if (Answers != null) {
             for (int i = 0; i < Answers.size(); i++) {

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="673.0" style="-fx-background-color: #EDF1FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.BilanController">
+<AnchorPane fx:id="Observation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="673.0" style="-fx-background-color: #EDF1FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.BilanController">
     <children>
         <Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0">
             <children>
@@ -38,26 +38,27 @@
                 </Button>
                 <Button fx:id="Appointements" layoutX="329.0" layoutY="1.0" mnemonicParsing="false" onAction="#Dossier" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: #0066b2;" text="Dossier" textFill="WHITE" underline="true" />
                 <Line endX="331.0" layoutX="168.0" layoutY="28.0" startX="-166.99998474121094" />
-            <Button fx:id="Anamnese" layoutX="65.0" layoutY="56.0" mnemonicParsing="false" onAction="#Anamnese" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Anamnese" underline="true">
+            <Button fx:id="Anamnese" layoutX="65.0" layoutY="45.0" mnemonicParsing="false" onAction="#Anamnese" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Anamnese" underline="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button fx:id="epreuveClinique" layoutX="276.0" layoutY="57.0" mnemonicParsing="false" onAction="#Test" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Epreuves Cliniques">
+            <Button fx:id="epreuveClinique" layoutX="276.0" layoutY="45.0" mnemonicParsing="false" onAction="#Test" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Epreuves Cliniques">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="Diagnostic" layoutX="65.0" layoutY="195.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Diagnostic">
+            <Button fx:id="Diagnostic" layoutX="65.0" layoutY="182.0" mnemonicParsing="false" onAction="#Diagnostic" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Diagnostic">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button fx:id="ProjetT" layoutX="276.0" layoutY="196.0" mnemonicParsing="false" onAction="#ProjetT" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Projet thérapeutique">
+            <Button fx:id="ProjetT" layoutX="276.0" layoutY="182.0" mnemonicParsing="false" onAction="#ProjetT" prefHeight="113.0" prefWidth="161.0" style="-fx-background-color: #b7e8fd; -fx-border-color: black;" text="Projet thérapeutique">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
+            <Button fx:id="observation" layoutX="307.0" layoutY="310.0" mnemonicParsing="false" onAction="#Observation" style="-fx-background-color: #0066b2;" text="Ajouter Observation" textFill="WHITE" />
             </children>
         </Pane>
     </children>

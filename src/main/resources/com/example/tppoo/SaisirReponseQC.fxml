@@ -2,15 +2,16 @@
 
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="703.0" style="-fx-background-color: #EDF1FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.QLIBREController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="703.0" style="-fx-background-color: #EDF1FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tppoo.SaisirQCController">
     <children>
-        <Pane prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0">
+        <Pane prefHeight="450.0" prefWidth="140.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0">
             <children>
                 <Button fx:id="settings" layoutX="4.0" layoutY="314.0" mnemonicParsing="false" onAction="#settings" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: white;" text="     Paramètres" />
                 <Button fx:id="patients" layoutX="4.0" layoutY="214.0" mnemonicParsing="false" onAction="#Patients" prefHeight="27.0" prefWidth="132.0" style="-fx-background-color: #0066b2;" text="Patients" textFill="WHITE" />
@@ -29,14 +30,15 @@
             </children>
         </Pane>
         <Accordion />
-        <TableView fx:id="table" layoutX="159.0" layoutY="23.0" prefHeight="311.0" prefWidth="527.0">
-            <columns>
-                <TableColumn fx:id="typeColumn" prefWidth="417.33331298828125" text="Enoncés" />
-                <TableColumn fx:id="titleColumn" prefWidth="109.99998474121094" text="Notes" />
-            </columns>
-        </TableView>
-        <Button fx:id="AjouetQ" layoutX="416.0" layoutY="344.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter Question" textFill="WHITE" />
-        <Button fx:id="Reponse" layoutX="159.0" layoutY="344.0" mnemonicParsing="false" onAction="#checkRdv" style="-fx-background-color: #0066b2;" text="Entrer la réponse du patient" textFill="WHITE" />
-        <Button fx:id="terminer" layoutX="618.0" layoutY="344.0" mnemonicParsing="false" onAction="#Terminer" style="-fx-background-color: #0066b2;" text="Terminer" textFill="WHITE" />
+        <Button fx:id="terminer" layoutX="584.0" layoutY="384.0" mnemonicParsing="false" onAction="#enregistrer" style="-fx-background-color: #0066b2;" text="Terminer" textFill="WHITE" />
+        <Pane layoutX="186.0" layoutY="20.0" prefHeight="355.0" prefWidth="480.0">
+            <children>
+                <ScrollPane fx:id="scrollpane" layoutX="19.0" layoutY="204.0" prefHeight="115.0" prefWidth="439.0" />
+                <TextArea fx:id="enonce" layoutX="19.0" layoutY="51.0" prefHeight="115.0" prefWidth="439.0" />
+                <Label layoutX="19.0" layoutY="32.0" text="Enoncé:" underline="true" />
+                <Label layoutX="19.0" layoutY="178.0" text="Label" />
+            </children>
+        </Pane>
+        <Button fx:id="retourner" layoutX="211.0" layoutY="384.0" mnemonicParsing="false" onAction="#retourner" style="-fx-background-color: #0066b2;" text="Retourner" textFill="WHITE" />
     </children>
 </AnchorPane>

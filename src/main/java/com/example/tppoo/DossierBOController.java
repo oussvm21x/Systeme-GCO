@@ -104,12 +104,15 @@ public class DossierBOController implements Initializable {
 
     @FXML
     public void Ajouter(ActionEvent A) throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("AjouterRdv.fxml")));
-        stage = (Stage)(((Node)A.getSource()).getScene().getWindow());
-        scene = new Scene (root);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoueterBilan.fxml"));
+        Parent root = loader.load();
+        AjouterBilan controller = loader.getController();
+        controller.getInfo(this.id);
+        AnchorPane anchorPane = (AnchorPane) root;
+        Stage stage = (Stage) (((Node) A.getSource()).getScene().getWindow());
+        Scene scene = new Scene(anchorPane); // Use the AnchorPane here
         stage.setScene(scene);
         stage.show();
-
     }
 
 

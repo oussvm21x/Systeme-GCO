@@ -48,7 +48,7 @@
                   <TableColumn fx:id="ListeBO" prefWidth="385.6666717529297" text="ListeBilans " />
                     </columns>
                 </TableView>
-            <Button layoutX="393.0" layoutY="323.0" mnemonicParsing="false" style="-fx-background-color: #0066b2;" text="Ajouter Bilan " textFill="WHITE" />
+            <Button fx:id="Ajouter" layoutX="393.0" layoutY="323.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter Bilan " textFill="WHITE" />
             <Button fx:id="bilan" layoutX="14.0" layoutY="323.0" mnemonicParsing="false" onAction="#checkRdv" style="-fx-background-color: #0066b2;" text="Consulter" textFill="WHITE" />
             </children>
         </Pane>

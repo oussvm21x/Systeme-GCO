@@ -35,8 +35,7 @@
                 <TableColumn fx:id="titleColumn" prefWidth="109.99998474121094" text="Notes" />
             </columns>
         </TableView>
-        <Button fx:id="AjouetQ" layoutX="416.0" layoutY="344.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter Question" textFill="WHITE" />
-        <Button fx:id="Reponse" layoutX="159.0" layoutY="344.0" mnemonicParsing="false" style="-fx-background-color: #0066b2;" text="Entrer la réponse du patient" textFill="WHITE" />
+        <Button fx:id="AjouetQ" layoutX="159.0" layoutY="344.0" mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #0066b2;" text="Ajouter Exercice" textFill="WHITE" />
         <Button fx:id="terminer" layoutX="618.0" layoutY="344.0" mnemonicParsing="false" onAction="#Terminer" style="-fx-background-color: #0066b2;" text="Terminer" textFill="WHITE" />
     </children>
 </AnchorPane>

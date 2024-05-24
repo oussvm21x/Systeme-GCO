@@ -19,7 +19,7 @@ public abstract class Appointment implements Serializable {
     protected Integer hour;
     protected Integer duration = 90;;
     protected EAppointment appointmentType;
-    protected Observation observation;
+    protected String observation;
     protected List<Patient> Patients;
     protected String title ;
     private EMode mode;
@@ -39,14 +39,14 @@ public abstract class Appointment implements Serializable {
         this.appointmentType = appointmentType;
     }
 
-    // Getters and setters for date, hour, duration, and appointmentType
-    public Observation getObservation() {
+    public String getObservation() {
         return observation;
     }
 
-    public void setObservation(Observation observation) {
+    public void setObservation(String observation) {
         this.observation = observation;
     }
+
     //Getter and setter for date
     public LocalDate getDate() {
         return date;

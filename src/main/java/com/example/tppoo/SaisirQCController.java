@@ -2,8 +2,6 @@ package com.example.tppoo;
 
 import BaseClasses.Bilan.Bilan;
 import BaseClasses.Bilan.ClinicalTest;
-import BaseClasses.Bilan.Diagnostic;
-import BaseClasses.Bilan.TeurapeuticProject;
 import BaseClasses.Test.QCM;
 import BaseClasses.Test.QCU;
 import BaseClasses.Test.Question;
@@ -29,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DiagnosticController {
+public class SaisirQCController {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -40,90 +38,91 @@ public class DiagnosticController {
     private ScrollPane scrollpane;
     private Integer id;
     private Bilan bilan;
+    private ClinicalTest test;
+    private boolean qcm;
+    private Question question ;
     public static List<String> Answers = new ArrayList<>();
-    private final String[] staticInformation = {"Troubles de la déglutition", "Troubles neuro-développementaux", "Troubles cognitifs"};
+    private List<Integer> SelectedAnswers = new ArrayList<>();
 
 
-    public void getInfo(Integer id, Bilan bilan) {
+    public void getInfo(Integer id, Bilan bilan, ClinicalTest test, boolean qcm , Question question) {
         this.id = id;
         this.bilan = bilan;
-
+        this.test = test;
+        this.qcm = qcm;
+        this.question = question ;
         populateScrollPane();
+        enonce.setText(this.question.getEnonce());
     }
 
 
-    public void enregistrer(ActionEvent event) throws IOException {
-        if (enonce.getText().isEmpty()) {
-            showAlert("Erreur", "Le texte de la question est vide. Veuillez fournir le texte de la question.");
+    public void enregistrer(ActionEvent A) throws IOException {
+
+        if (SelectedAnswers.isEmpty()) {
+            showAlert("Erreur", "Aucune réponse sélectionnée. Veuillez sélectionner au moins une réponse correcte.");
             return;
         }
-        if (Answers.isEmpty()) {
-            showAlert("Erreur", "Aucun choix fourni. Veuillez fournir au moins un choix.");
+        if (SelectedAnswers.size() > 1 && !qcm) {
+            showAlert("Erreur", "Plusieurs réponses sélectionnées ne sont autorisées que pour les questions QCM.");
             return;
         }
-        Diagnostic e;
-        if (this.bilan.getEtape3() == null) {
-            e = new Diagnostic();
-        } else {
-            e = this.bilan.getEtape3();
-        }
-        e.setDescription(enonce.getText());
-        if (Answers.contains("Troubles de la déglutition")){
-            e.setTroubles_deglutition(true);
-        }
-        if (Answers.contains("Troubles cognitifs")){
-            e.setTroubles_cognitifs(true);
-        }
-        if (Answers.contains("Troubles neuro-développementaux")){
-            e.setTroubles_neuro_developpement(true);
-        }
+
+       if(qcm){
+           ((QCM)this.question).setAnswers(SelectedAnswers);
+           ((QCM)this.question).calculateScore();
+       }else {
+           ((QCU)this.question).setAnswers(SelectedAnswers.get(0));
+           ((QCU)this.question).calculateScore();
+       }
         Clinique.sauvegarderClinique("Clinique.txt");
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Bilan.fxml"));
-            Parent root = loader.load();
-            BilanController controller = loader.getController();
-            controller.getInfo(this.id, this.bilan);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            ex.printStackTrace();
+
+        FXMLLoader loader;
+        Parent root;
+        if (qcm) {
+            loader = new FXMLLoader(getClass().getResource("QCM.fxml"));
+            root = loader.load();
+            QCMController controller = loader.getController();
+            controller.getInfo(this.id, this.bilan, this.test);
+        } else {
+            loader = new FXMLLoader(getClass().getResource("QCU.fxml"));
+            root = loader.load();
+            QCUController controller = loader.getController();
+            controller.getInfo(this.id, this.bilan, this.test);
         }
+        Stage stage = (Stage) ((Node) A.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-
-
-    @FXML
-    private void retourner(ActionEvent event) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Bilan.fxml"));
-            Parent root = loader.load();
-            BilanController controller = loader.getController();
-            controller.getInfo(this.id, this.bilan);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
 
     private void populateScrollPane() {
         VBox container = new VBox();
         container.setSpacing(10);
 
-        // Adding static information to the scroll pane
-        for (String info : staticInformation) {
-            Pane pane = createEntryPane(info);
-            container.getChildren().add(pane);
+        if (qcm && ((QCM)this.question).getPossiblesAnswers()!= null) {
+                for (String answer : ((QCM)this.question).getPossiblesAnswers()) {
+                    Pane pane = createEntryPane(answer, Answers.indexOf(answer));
+                    container.getChildren().add(pane);
+            }
+        } else if (!qcm &&((QCU)this.question).getPossiblesAnswers() != null) {
+                for (String answer :((QCU)this.question).getPossiblesAnswers()) {
+                    Pane pane = createEntryPane(answer, Answers.indexOf(answer));
+                    container.getChildren().add(pane);
+
+            }
+        }
+
+        if (Answers != null) {
+            for (int i = 0; i < Answers.size(); i++) {
+                Pane pane = createEntryPane(Answers.get(i), i);
+                container.getChildren().add(pane);
+            }
         }
 
         scrollpane.setContent(container);
     }
 
-    private Pane createEntryPane(String answer) {
+    private Pane createEntryPane(String answer, int index) {
         Pane entryPane = new Pane();
         entryPane.setPrefWidth(500);
         entryPane.setPrefHeight(50);
@@ -147,15 +146,37 @@ public class DiagnosticController {
 
         archiveButton.setOnAction(event -> {
             if (archiveButton.isSelected()) {
-                Answers.add(answer);
+                SelectedAnswers.add(index);
             } else {
-                Answers.remove(answer);
+                SelectedAnswers.remove(Integer.valueOf(index));
             }
         });
 
         entryPane.getChildren().addAll(nameLabel, archiveButton);
         return entryPane;
     }
+
+    @FXML
+    private void retourner(ActionEvent event) throws IOException {
+        FXMLLoader loader;
+        Parent root;
+        if (qcm) {
+            loader = new FXMLLoader(getClass().getResource("QCM.fxml"));
+            root = loader.load();
+            QCMController controller = loader.getController();
+            controller.getInfo(this.id, this.bilan, this.test);
+        } else {
+            loader = new FXMLLoader(getClass().getResource("QCU.fxml"));
+            root = loader.load();
+            QCUController controller = loader.getController();
+            controller.getInfo(this.id, this.bilan, this.test);
+        }
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

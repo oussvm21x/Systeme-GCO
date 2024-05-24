@@ -3,15 +3,33 @@ package BaseClasses.Test;
 import Interfaces.Q_E;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Exercice implements Q_E , Serializable {
-	private String[] materiels;
-
-	public String[] getMateriels() {
+	private String materiels;
+	private  String Consigne ;
+	public String getMateriels() {
 		return materiels;
 	}
+	public Integer Score ;
 
-	public void setMateriels(String[] materiels) {
+	public Integer getScore() {
+		return Score;
+	}
+
+	public void setScore(Integer score) {
+		Score = score;
+	}
+
+	public void setConsigne(String consigne) {
+		Consigne = consigne;
+	}
+
+	public String getConsigne() {
+		return Consigne;
+	}
+
+	public void setMateriels(String materiels) {
 		this.materiels = materiels;
 	}
 	

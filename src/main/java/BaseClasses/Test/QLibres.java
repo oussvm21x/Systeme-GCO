@@ -19,5 +19,7 @@ public class QLibres extends Question implements Q_E, Serializable {
         return Answer ; 
     }
 
-
+    public void setAnswer(String answer) {
+        Answer = answer;
+    }
 }
